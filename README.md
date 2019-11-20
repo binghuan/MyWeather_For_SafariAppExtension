@@ -12,6 +12,6 @@ Coding Test from Avira in Germany
 ![](pictures/Slide5.png)
 ![](pictures/Slide6.png)
 
-## Illustration
+## Demo
 ![](demo_version_1_20191120.gif)
 
