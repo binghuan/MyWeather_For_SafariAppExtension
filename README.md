@@ -14,4 +14,3 @@ Coding Test from Avira in Germany
 
 ## Demo
 ![](demo_version_1_20191120.gif)
-
