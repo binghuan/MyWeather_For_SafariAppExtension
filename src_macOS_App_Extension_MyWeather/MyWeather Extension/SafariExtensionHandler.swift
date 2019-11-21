@@ -24,7 +24,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
             let longitude = geolocation[1]
             
             UserDefaults.standard.set(latitude, forKey: "latitude")
-            UserDefaults.standard.set(longitude, forKey: "longitue")
+            UserDefaults.standard.set(longitude, forKey: "longitude")
             
             self.requestWeatherData(latitude: latitude, longitude: longitude)
         }
@@ -58,7 +58,11 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
         // And then, try to get latest weather info.
         let diff = getDiffTimeBetweenLastAndNow()
         if(diff > DEFAULT_DIFF_THRESH_HOLD) {
-            restoreWeatherInfo()
+            
+            guard let latitude = UserDefaults.standard.string(forKey: "latitude") else { return}
+            guard let longitude = UserDefaults.standard.string(forKey: "longitude") else { return}
+            
+            requestWeatherData(latitude: latitude, longitude: longitude)
         }
     }
     
@@ -235,6 +239,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     }
     
     let DEFAULT_DIFF_THRESH_HOLD = 60*20 // 20 Minutes => 1200 seconds
+    //let DEFAULT_DIFF_THRESH_HOLD = 3 // 3 seconds for Testing.
     // MARK: functions to compare timestamps ----------------------------------<
     
     // MARK: Others ----------------------------------------------------------->
